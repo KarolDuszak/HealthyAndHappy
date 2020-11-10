@@ -9,7 +9,7 @@ namespace HealthyAndHappy.Models
     {
         public string Id { get; set; }
         public string Recipe { get; set; }
-        public DateTime data { get; set; }
+        public DateTime Date { get; set; }
         public int Kcal { get; set; }
     }
 }
