@@ -11,7 +11,7 @@ namespace HealthyAndHappy.Models
         public string Name { get; set; }
         public int Kcal { get; set; }
         public bool IsAccepted { get; set; }
-        public User IdUser { get; set; }
+        public string IdUser { get; set; }
         public string Description { get; set; }
         public List<Meat> Meats { get; set; }
         public List<Vegetable> Vegetables { get; set; }
