@@ -22,7 +22,7 @@ namespace HealthyAndHappy.Models
         public List <Fat> Fats { get; set; }
         public List <Alcohol> Alcohols { get; set; }
         public List <Spice> Spices { get; set; }
-        public List <FishAndSeefood> FishAndSeefoods { get; set; }
+        public List <FishAndSeafood> FishAndSeafoods { get; set; }
         public List <Nut> Nuts { get; set; }
         public List <Drink> Drinks { get; set; }
         public List <Sauce> Sauces { get; set; }
