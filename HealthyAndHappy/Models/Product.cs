@@ -14,6 +14,7 @@ namespace HealthyAndHappy.Models
         public int Portion { get; set; }
         public int Chain { get; set; }
         public bool IsAccepted { get; set; }
+        public int PortionSize { get; set; }
         public string IdUser { get; set; }
         
     }
