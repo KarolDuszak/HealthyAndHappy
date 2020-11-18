@@ -8,6 +8,7 @@ namespace HealthyAndHappy.Models
     public class Recipe
     {
         public string Id { get; set; }
+        public int PreprationTime { get; set; }
         public string Name { get; set; }
         public int Kcal { get; set; }
         public bool IsAccepted { get; set; }
