@@ -8,7 +8,7 @@ namespace HealthyAndHappy.Models
     public class Larder
     {
         public string Id { get; set; }
-        public string IdUser { get; set; }
+        public ApplicationUser User { get; set; }
         public List<Meat> Meats { get; set; }
         public List<Vegetable> Vegetables { get; set; }
         public List<Fruit> Fruits { get; set; }
