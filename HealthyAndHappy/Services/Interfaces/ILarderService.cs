@@ -1,4 +1,5 @@
 ﻿using HealthyAndHappy.Models;
+using HealthyAndHappy.Models.ModelsDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ namespace HealthyAndHappy.Services.Interfaces
 {
     public interface ILarderService
     {
-        Larder Get(string userId);
-        List<Product> GetProductsForCategory(Product p);
-        bool ChangeAmount(Product p, int amount);
-        bool AddProduct(Product p);
+        LarderDTO Get(string userId);
+        ProductsDTO GetProductsForCategory(Product p);
+        ResponseDTO ChangeAmount(Product p, int amount);
+        ResponseDTO AddProduct(Product p);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using HealthyAndHappy.Models;
+using HealthyAndHappy.Models.ModelsDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,11 @@ namespace HealthyAndHappy.Services.Interfaces
 {
     public interface IRecipeService
     {
-        List<Recipe> GetAllRecipes();
-        List<Recipe> GetRecipesForCategory(Category catregory);
-        Recipe GetRecipeDetail(string Id);
-        bool AddRecipe();
+        RecipesDTO GetAllRecipes();
+        RecipesDTO GetRecipesForCategory(CategoryDTO category);
+        RecipeDTO GetRecipeDetail(RecipeDTO recipe);
+        ResponseDTO  AddRecipe(RecipeDTO recipe);
+        ResponseDTO ReportRecipe(RecipeDTO recipe);
         
     }
 }

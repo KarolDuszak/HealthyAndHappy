@@ -16,5 +16,6 @@ namespace HealthyAndHappy.Models.ModelsDTO
         public bool IsAccepted { get; set; }
         public int PortionSize { get; set; }
         public string IdUser { get; set; }
+        public string Name { get; set; }
     }
 }
