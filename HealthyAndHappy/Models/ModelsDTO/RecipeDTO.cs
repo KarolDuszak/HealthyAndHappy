@@ -14,6 +14,8 @@ namespace HealthyAndHappy.Models.ModelsDTO
         public bool IsAccepted { get; set; }
         public string IdUser { get; set; }
         public string Description { get; set; }
+        public Categories Category { get; set; }
+        public Macro Macro { get; set; }
         public List<Meat> Meats { get; set; }
         public List<Vegetable> Vegetables { get; set; }
         public List<Fruit> Fruits { get; set; }
