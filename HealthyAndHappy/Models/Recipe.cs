@@ -26,7 +26,7 @@ namespace HealthyAndHappy.Models
         public string Name { get; set; }
         public int Kcal { get; set; }
         public bool IsAccepted { get; set; }
-        public string IdUser { get; set; }
+        public ApplicationUser Maker { get; set; }
         public string Description { get; set; }
         public Categories Category { get; set; }
         public Macro Macro { get; set; }
