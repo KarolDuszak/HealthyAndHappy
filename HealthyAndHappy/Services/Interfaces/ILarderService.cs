@@ -10,8 +10,8 @@ namespace HealthyAndHappy.Services.Interfaces
     public interface ILarderService
     {
         LarderDTO Get(string userId);
-        ProductsDTO GetProductsForCategory(Product p);
-        ResponseDTO ChangeAmount(Product p, int amount);
-        ResponseDTO AddProduct(Product p);
+        ProductsDTO GetProductsForCategory(Product product);
+        ResponseDTO ChangeAmount(Product product, int amount);
+        ResponseDTO AddProduct(Product product);
     }
 }
