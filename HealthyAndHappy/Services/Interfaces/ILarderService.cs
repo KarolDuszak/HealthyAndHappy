@@ -13,5 +13,7 @@ namespace HealthyAndHappy.Services.Interfaces
         ProductsDTO GetProductsForCategory(Product product);
         ResponseDTO ChangeAmount(Product product, int amount);
         ResponseDTO AddProduct(Product product);
+        
+
     }
 }

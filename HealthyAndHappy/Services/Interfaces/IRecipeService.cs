@@ -10,10 +10,12 @@ namespace HealthyAndHappy.Services.Interfaces
     public interface IRecipeService
     {
         RecipesDTO GetAllRecipes();
-        RecipesDTO GetRecipesForCategory(CategoryDTO category);
+        RecipesDTO GetRecipesForCategory(CategoryDTO category);// Tu będzie zmiana jak zniknie category
         RecipeDTO GetRecipeDetail(RecipeDTO recipe);
         ResponseDTO  AddRecipe(RecipeDTO recipe);
         ResponseDTO ReportRecipe(RecipeDTO recipe);
+        ResponseDTO DoRecipe(string id, string recipe, DateTime date, int kcal);
+        RecipeDTO DrawRecipe(LarderDTO id);
         
     }
 }

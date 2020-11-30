@@ -16,7 +16,7 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e=>e.PreprationTime).IsRequired();
             entity.Property(e => e.Kcal).IsRequired();
             entity.Property(e => e.Description).IsRequired();
-            entity.Property(e => e.IdUser).IsRequired();
+            entity.HasOne<ApplicationUser>(e => e.Maker);
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Name).IsRequired();
 

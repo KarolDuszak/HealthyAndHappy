@@ -16,7 +16,7 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.Vegetables).IsRequired();
             entity.Property(e => e.Fruits).IsRequired();
             entity.Property(e => e.Diaries).IsRequired();
-            entity.Property(e => e.IdUser).IsRequired();
+            entity.HasOne<ApplicationUser>(e => e.User);
             entity.Property(e => e.Carbohydrates).IsRequired();
             entity.Property(e => e.DryGoods).IsRequired();
             entity.Property(e => e.Fats).IsRequired();
