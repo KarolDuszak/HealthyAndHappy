@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HealthyAndHappy.Models.ModelsDTO
 {
@@ -30,5 +31,6 @@ namespace HealthyAndHappy.Models.ModelsDTO
         public List<Drink> Drinks { get; set; }
         public List<Sauce> Sauces { get; set; }
         public List<Special> Specials { get; set; }
+        
     }
 }
