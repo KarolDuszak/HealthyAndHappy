@@ -25,7 +25,7 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Email, map => map.MapFrom(m => m.Mail)).
                 ForMember(vm => vm.PasswordHash, map => map.MapFrom(m => m.Password)).
                 ForMember(vm => vm.Histories, map => map.MapFrom(m => m.Histories)).
-                ForMember(vm => vm.Recipes, map => map.MapFrom(m => m.Histories));
+                ForMember(vm => vm.FavouriteRecipes, map => map.MapFrom(m => m.Histories));
 
             CreateMap<History, HistoryDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).

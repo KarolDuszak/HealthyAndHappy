@@ -10,7 +10,7 @@ namespace HealthyAndHappy.Models
     {
         public bool IsAdmin { get; set; }
         public IEnumerable<History> Histories { get; set; }
-        public IEnumerable<Recipe> Recipes { get; set; }
+        public IEnumerable<Recipe> FavouriteRecipes { get; set; }
 
     }
 }
