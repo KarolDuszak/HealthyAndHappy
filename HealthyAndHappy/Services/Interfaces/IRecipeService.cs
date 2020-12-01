@@ -10,7 +10,7 @@ namespace HealthyAndHappy.Services.Interfaces
     public interface IRecipeService
     {
         RecipesDTO GetAllRecipes();
-        RecipesDTO GetRecipesForCategory(CategoryDTO category);// Tu będzie zmiana jak zniknie category
+        RecipesDTO GetRecipesForCategory(int categoryNumber);// Use enum to get right category. See Recipe model or documentation to read more.
         RecipeDTO GetRecipeDetail(RecipeDTO recipe);
         ResponseDTO  AddRecipe(RecipeDTO recipe);
         ResponseDTO ReportRecipe(RecipeDTO recipe);

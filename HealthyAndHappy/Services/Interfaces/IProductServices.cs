@@ -7,6 +7,6 @@ namespace HealthyAndHappy.Services.Interfaces
         ResponseDTO AddProduct(ProductDTO product);
         ResponseDTO DeleteProduct(ProductDTO product);
         ResponseDTO EditProduct(ProductDTO product);
-        ProductDTO GetAllByCategory(CategoryDTO category); // Tu będzie zmiana jak zniknie category
+        //ProductDTO GetAllByCategory(CategoryDTO category); // Tu będzie zmiana jak zniknie category
     }
 }
