@@ -19,6 +19,8 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.HasOne<ApplicationUser>(e => e.Maker);
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Name).IsRequired();
+            entity.Property(e => e.imageByteArray);
+
 
         }
     }

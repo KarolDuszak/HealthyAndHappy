@@ -17,6 +17,7 @@ namespace HealthyAndHappy.Models.ModelsDTO
         public string Description { get; set; }
         public Categories Category { get; set; }
         public Macro Macro { get; set; }
+        public byte[] imageByteArray { get; set; }
         public List<Meat> Meats { get; set; }
         public List<Vegetable> Vegetables { get; set; }
         public List<Fruit> Fruits { get; set; }
