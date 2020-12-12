@@ -21,20 +21,20 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.Macro).IsRequired();
             entity.Property(e => e.imageByteArray);
             entity.HasOne<ApplicationUser>(e => e.Maker);
-            entity.HasMany(e => e.Alcohols);
-            entity.HasMany(e => e.Carbohydrates);
-            entity.HasMany(e => e.Diaries);
-            entity.HasMany(e => e.Drinks);
-            entity.HasMany(e => e.DryGoods);
-            entity.HasMany(e => e.Fats);
-            entity.HasMany(e => e.FishAndSeafoods);
-            entity.HasMany(e => e.Fruits);
-            entity.HasMany(e => e.Meats);
-            entity.HasMany(e => e.Nuts);
-            entity.HasMany(e => e.Sauces);
-            entity.HasMany(e => e.Specials);
-            entity.HasMany(e => e.Spices);
-            entity.HasMany(e => e.Vegetables);
+            entity.HasMany(e => e.Alcohols).WithOne();
+            entity.HasMany(e => e.Carbohydrates).WithOne();
+            entity.HasMany(e => e.Diaries).WithOne();
+            entity.HasMany(e => e.Drinks).WithOne();
+            entity.HasMany(e => e.DryGoods).WithOne();
+            entity.HasMany(e => e.Fats).WithOne();
+            entity.HasMany(e => e.FishAndSeafoods).WithOne();
+            entity.HasMany(e => e.Fruits).WithOne();
+            entity.HasMany(e => e.Meats).WithOne();
+            entity.HasMany(e => e.Nuts).WithOne();
+            entity.HasMany(e => e.Sauces).WithOne();
+            entity.HasMany(e => e.Specials).WithOne();
+            entity.HasMany(e => e.Spices).WithOne();
+            entity.HasMany(e => e.Vegetables).WithOne();
 
         }
     }
