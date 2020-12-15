@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HealthyAndHappy.Models.ModelConfiguration
 {
-    public class DrinkConfiguration : IEntityTypeConfiguration<Drink>
+    public class BreadAndNoodleConfiguration : IEntityTypeConfiguration<BreadAndNoodle>
     {
-        public void Configure(EntityTypeBuilder<Drink> entity)
+        public void Configure(EntityTypeBuilder<BreadAndNoodle> entity)
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired();

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HealthyAndHappy.Models
 {
-    public class Carbohydrate:Product
+    public class OilAndFat: Product
     {
     }
 }

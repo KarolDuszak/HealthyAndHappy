@@ -12,9 +12,9 @@ namespace HealthyAndHappy.Models.ModelsDTO
         public List<Vegetable> Vegetables { get; set; }
         public List<Fruit> Fruits { get; set; }
         public List<Diary> Diaries { get; set; }
-        public List<Carbohydrate> Carbohydrates { get; set; }
+        public List<BreadAndNoodle> BreadsAndNoodles { get; set; }
         public List<DryGood> DryGoods { get; set; }
-        public List<Fat> Fats { get; set; }
+        public List<OilAndFat> OilsAndFats { get; set; }
         public List<Alcohol> Alcohols { get; set; }
         public List<Spice> Spices { get; set; }
         public List<FishAndSeafood> FishAndSeafoods { get; set; }
