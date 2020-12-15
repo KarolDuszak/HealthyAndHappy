@@ -47,11 +47,11 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
                 ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
                 ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
                 ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
                 ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
                 ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.Fats, map => map.MapFrom(m => m.Fats)).
+                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
                 ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
                 ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits));
             CreateMap<LarderDTO,Larder>().
@@ -63,11 +63,11 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
                 ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
                 ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
                 ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
                 ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
                 ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.Fats, map => map.MapFrom(m => m.Fats)).
+                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
                 ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
                 ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits));
 
@@ -87,7 +87,9 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.Maker.Id)).
                 ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
                 ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Macro, map => map.MapFrom(m => m.Macro)).
+                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
+                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
                 ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
                 ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
                 ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
@@ -97,21 +99,24 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
                 ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
                 ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
                 ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category)).
                 ForMember(vm => vm.Description, map => map.MapFrom(m => m.Description)).
                 ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
                 ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
                 ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.Fats, map => map.MapFrom(m => m.Fats)).
+                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
                 ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
-                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits));
-            CreateMap<RecipeDTO,Recipe>().
+                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits)).
+                ForMember(vm => vm.imageByteArray, map => map.MapFrom(m => m.imageByteArray)); 
+            CreateMap<RecipeDTO, Recipe>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Maker.Id, map => map.MapFrom(m => m.IdUser)).
                 ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
                 ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Macro, map => map.MapFrom(m => m.Macro)).
+                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
+                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
                 ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
                 ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
                 ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
@@ -121,15 +126,16 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
                 ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
                 ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
                 ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category)).
                 ForMember(vm => vm.Description, map => map.MapFrom(m => m.Description)).
                 ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
                 ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
                 ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.Fats, map => map.MapFrom(m => m.Fats)).
+                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
                 ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
-                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits));
+                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits)).
+                ForMember(vm => vm.imageByteArray, map => map.MapFrom(m => m.imageByteArray));
         }
     }
 }

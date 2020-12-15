@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace HealthyAndHappy.Models.ModelConfiguration
 {
-    public class CarbohydrateConfiguration : IEntityTypeConfiguration<Carbohydrate>
+    public class BreadAndNoodleConfiguration : IEntityTypeConfiguration<BreadAndNoodle>
     {
-        public void Configure(EntityTypeBuilder<Carbohydrate> entity)
+        public void Configure(EntityTypeBuilder<BreadAndNoodle> entity)
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Amount).IsRequired();
             entity.Property(e => e.Kcal).IsRequired();
-            entity.Property(e => e.Macro).IsRequired();
             entity.Property(e => e.IdUser).IsRequired();
             entity.Property(e => e.Portion).IsRequired();
             entity.Property(e => e.PortionSize).IsRequired();

@@ -15,7 +15,6 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.Amount).IsRequired();
             entity.Property(e => e.Kcal).IsRequired();
-            entity.Property(e => e.Macro).IsRequired();
             entity.Property(e => e.IdUser).IsRequired();
             entity.Property(e => e.Portion).IsRequired();
             entity.Property(e => e.PortionSize).IsRequired();
