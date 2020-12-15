@@ -20,7 +20,9 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.PortionSize).IsRequired();
             entity.Property(e => e.IsAccepted).IsRequired();
             entity.Property(e => e.Chain).IsRequired();
-
+            entity.Property(e => e.Carbohydrates).IsRequired();
+            entity.Property(e => e.Fat).IsRequired();
+            entity.Property(e => e.Proteins).IsRequired();
 
         }
     }
