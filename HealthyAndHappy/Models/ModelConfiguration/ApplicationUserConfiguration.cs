@@ -17,7 +17,7 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.Email).IsRequired();
             entity.Property(e => e.PasswordHash).IsRequired();
             entity.Property(e => e.IsAdmin).IsRequired();
-            entity.HasMany(e => e.Histories).WithOne().HasForeignKey(k=>k.Id);
+            entity.HasMany(e => e.Histories).WithOne().HasForeignKey(k=>k.Id).OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(e => e.FavouriteRecipes).WithOne().HasForeignKey(k => k.Id);
 
         }
