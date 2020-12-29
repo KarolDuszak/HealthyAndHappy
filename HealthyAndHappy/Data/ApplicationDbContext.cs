@@ -9,7 +9,7 @@ using HealthyAndHappy.Models.ModelConfiguration;
 
 namespace HealthyAndHappy.Data
 {
-    public class ApplicationDbContext: IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
