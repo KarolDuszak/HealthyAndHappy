@@ -10,6 +10,7 @@ namespace HealthyAndHappy.Models.ModelsDTO
         public bool IsAdmin { get; set; }
         public IEnumerable<History> Histories { get; set; }
         public IEnumerable<Recipe> Recipes { get; set; }
+        public Larder Larder { get; set; }
         public virtual string Password { get; set; }
         public virtual string Mail { get; set; }
         public virtual string Name { get; set; }

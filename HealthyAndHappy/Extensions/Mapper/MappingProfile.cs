@@ -14,6 +14,7 @@ namespace HealthyAndHappy.Extensions.Mapper
         {
             CreateMap<ApplicationUser, UserDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
+                ForMember(vm => vm.Larder, map => map.MapFrom(m => m.Larder)).
                 ForMember(vm => vm.Name, map => map.MapFrom(m => m.UserName)).
                 ForMember(vm => vm.Mail, map => map.MapFrom(m => m.Email)).
                 ForMember(vm => vm.Password, map => map.MapFrom(m => m.PasswordHash)).
@@ -21,6 +22,7 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Recipes, map => map.MapFrom(m => m.Histories));
             CreateMap<UserDTO,ApplicationUser>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
+                ForMember(vm=>vm.Larder,map=>map.MapFrom(m=>m.Larder)).
                 ForMember(vm => vm.UserName, map => map.MapFrom(m => m.Name)).
                 ForMember(vm => vm.Email, map => map.MapFrom(m => m.Mail)).
                 ForMember(vm => vm.PasswordHash, map => map.MapFrom(m => m.Password)).
@@ -40,6 +42,7 @@ namespace HealthyAndHappy.Extensions.Mapper
 
             CreateMap<Larder, LarderDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
+                ForMember(vm => vm.User, map => map.MapFrom(m => m.User)).
                 ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
                 ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
                 ForMember(vm => vm.Sauces, map => map.MapFrom(m => m.Sauces)).
@@ -56,6 +59,7 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits));
             CreateMap<LarderDTO,Larder>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
+                ForMember(vm=>vm.User,map =>map.MapFrom(m=>m.User)).
                 ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
                 ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
                 ForMember(vm => vm.Sauces, map => map.MapFrom(m => m.Sauces)).

@@ -12,7 +12,6 @@ namespace HealthyAndHappy.Models.ModelConfiguration
         public void Configure(EntityTypeBuilder<Larder> entity)
         {
             entity.HasKey(e => e.Id);
-            entity.HasOne<ApplicationUser>(e => e.User).WithOne();
             entity.HasMany(e => e.Alcohols).WithOne().HasForeignKey(k => k.Id).OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(e => e.BreadsAndNoodles).WithOne().HasForeignKey(k => k.Id).OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(e => e.Diaries).WithOne().HasForeignKey(k => k.Id).OnDelete(DeleteBehavior.Cascade);
