@@ -19,7 +19,8 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Mail, map => map.MapFrom(m => m.Email)).
                 ForMember(vm => vm.Password, map => map.MapFrom(m => m.PasswordHash)).
                 ForMember(vm => vm.Histories, map => map.MapFrom(m => m.Histories)).
-                ForMember(vm => vm.Recipes, map => map.MapFrom(m => m.Histories));
+                ForMember(vm => vm.Recipes, map => map.MapFrom(m => m.Histories)).
+                ForMember(vm => vm.RecipesCreatedByMy, map => map.MapFrom(m => m.RecipesCreatedByMy));
             CreateMap<UserDTO,ApplicationUser>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
                 ForMember(vm=>vm.Larder,map=>map.MapFrom(m=>m.Larder)).
@@ -27,7 +28,8 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Email, map => map.MapFrom(m => m.Mail)).
                 ForMember(vm => vm.PasswordHash, map => map.MapFrom(m => m.Password)).
                 ForMember(vm => vm.Histories, map => map.MapFrom(m => m.Histories)).
-                ForMember(vm => vm.FavouriteRecipes, map => map.MapFrom(m => m.Histories));
+                ForMember(vm => vm.FavouriteRecipes, map => map.MapFrom(m => m.Histories)).
+                ForMember(vm => vm.RecipesCreatedByMy, map => map.MapFrom(m => m.RecipesCreatedByMy));
 
             CreateMap<History, HistoryDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).

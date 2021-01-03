@@ -22,7 +22,7 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.Carbohydrates);
             entity.Property(e => e.Fat);
             entity.Property(e => e.Proteins);
-            entity.HasOne<ApplicationUser>(e => e.Maker).WithOne();
+            entity.HasOne<ApplicationUser>(e => e.Maker).WithMany(e=>e.RecipesCreatedByMy);
             entity.HasMany(e => e.Alcohols).WithOne().HasForeignKey(k=>k.Id).OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(e => e.BreadsAndNoodles).WithOne().HasForeignKey(k => k.Id).OnDelete(DeleteBehavior.Cascade);
             entity.HasMany(e => e.Diaries).WithOne().HasForeignKey(k => k.Id).OnDelete(DeleteBehavior.Cascade);

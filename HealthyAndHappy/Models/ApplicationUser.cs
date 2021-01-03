@@ -12,6 +12,7 @@ namespace HealthyAndHappy.Models
         public IEnumerable<History> Histories { get; set; }
         public IEnumerable<Recipe> FavouriteRecipes { get; set; }
         public Larder Larder { get; set; }
+        public List <Recipe> RecipesCreatedByMy { get; set; }
 
     }
 }
