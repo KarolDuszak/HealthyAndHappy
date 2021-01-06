@@ -960,7 +960,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Alcohols")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -975,7 +975,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("BreadsAndNoodles")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -990,7 +990,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Diaries")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1005,7 +1005,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Drinks")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1020,7 +1020,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("DryGoods")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1035,7 +1035,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("FishAndSeafoods")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1050,7 +1050,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Fruits")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1085,7 +1085,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Meats")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1100,7 +1100,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Nuts")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1115,7 +1115,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("OilsAndFats")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1145,7 +1145,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Sauces")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1160,7 +1160,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Specials")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1175,7 +1175,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Spices")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -1190,7 +1190,7 @@ namespace HealthyAndHappy.Migrations
                     b.HasOne("HealthyAndHappy.Models.Recipe", null)
                         .WithMany("Vegetables")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

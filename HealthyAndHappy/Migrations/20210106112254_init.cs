@@ -268,8 +268,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Alcohol_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -302,8 +301,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_breadAndNoodle_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -336,8 +334,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Diary_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -370,8 +367,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Drink_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -404,8 +400,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_DryGood_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -438,8 +433,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_FishAndSeafood_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -472,8 +466,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Fruit_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -506,8 +499,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Meat_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -540,8 +532,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Nut_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -574,8 +565,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_OilAndFat_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -608,8 +598,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Sauce_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -642,8 +631,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Special_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -676,8 +664,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Spice_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -710,8 +697,7 @@ namespace HealthyAndHappy.Migrations
                         name: "FK_Vegetable_Recipe_Id",
                         column: x => x.Id,
                         principalTable: "Recipe",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
