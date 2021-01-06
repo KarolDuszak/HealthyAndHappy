@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /HealthyAndHappy/Services/Implementations
+/HealthyAndHappy/Services/Interfaces
