@@ -340,3 +340,5 @@ ASALocalRun/
 healthchecksdb
 /HealthyAndHappy/Services/Implementations
 /HealthyAndHappy/Services/Interfaces
+/HealthyAndHappy/Migrations/20210106132436_init.cs
+/HealthyAndHappy/Migrations/20210106132436_init.Designer.cs
