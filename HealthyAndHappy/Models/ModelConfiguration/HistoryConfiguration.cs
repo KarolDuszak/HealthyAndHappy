@@ -15,6 +15,7 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.Recipe).IsRequired();
             entity.Property(e => e.Date).IsRequired();
             entity.Property(e => e.Kcal).IsRequired();
+            entity.HasOne<ApplicationUser>(a => a.User).WithMany(b => b.Histories).HasForeignKey(b => b.UserId);
 
         }
     }

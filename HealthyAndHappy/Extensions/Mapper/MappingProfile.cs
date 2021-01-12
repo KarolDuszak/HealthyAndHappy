@@ -35,12 +35,15 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Recipe, map => map.MapFrom(m => m.Recipe)).
-                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date));
+                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date)).
+                ForMember(vm=>vm.UserId, map=>map.MapFrom(m=>m.UserId));
+
             CreateMap<HistoryDTO, History>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Recipe, map => map.MapFrom(m => m.Recipe)).
-                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date));
+                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date)).
+                ForMember(vm => vm.UserId, map => map.MapFrom(m => m.UserId));
 
             CreateMap<Larder, LarderDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
