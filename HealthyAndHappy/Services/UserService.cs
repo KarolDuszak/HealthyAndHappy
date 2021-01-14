@@ -21,7 +21,7 @@ namespace HealthyAndHappy.Services
             try
             {
                 var user = _mapper.Map<ApplicationUser>(userDTO);
-                // dbContext.Set<ApplicationUser>.Update(user);
+                //dbContext.Set<ApplicationUser>.Update(user);
                 return ResponseDTO.Successful();
             }
             catch (Exception e)
