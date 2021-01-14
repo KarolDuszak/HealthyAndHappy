@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HealthyAndHappy.Models.ModelConfiguration
 {
-    public class DrinkConfiguration : IEntityTypeConfiguration<Drink>
+    public class ProductForRecipeConfiguration : IEntityTypeConfiguration<ProductForRecipe>
     {
-        public void Configure(EntityTypeBuilder<Drink> entity)
+        public void Configure(EntityTypeBuilder<ProductForRecipe> entity)
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired();
@@ -23,7 +23,7 @@ namespace HealthyAndHappy.Models.ModelConfiguration
             entity.Property(e => e.Carbohydrates).IsRequired();
             entity.Property(e => e.Fat).IsRequired();
             entity.Property(e => e.Proteins).IsRequired();
-
+            entity.HasOne<Recipe>(a => a.Recipe).WithMany(b => b.Products).HasForeignKey(b => b.RecipeId);
         }
     }
 }
