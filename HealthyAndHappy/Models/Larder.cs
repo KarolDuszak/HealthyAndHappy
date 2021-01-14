@@ -9,6 +9,7 @@ namespace HealthyAndHappy.Models
     {
         public string Id { get; set; }
         public ApplicationUser User { get; set; }
+        public string UserId { get; set; }
         public List<ProductForLarder> Products { get; set; } 
     }
 }
