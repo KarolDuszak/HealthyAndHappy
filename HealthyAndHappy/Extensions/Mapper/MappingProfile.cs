@@ -47,12 +47,12 @@ namespace HealthyAndHappy.Extensions.Mapper
 
             CreateMap<Larder, LarderDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.User, map => map.MapFrom(m => m.User)).
+                ForMember(vm => vm.UserId, map => map.MapFrom(m => m.UserId)).
                 ForMember(vm => vm.Products, map => map.MapFrom(m => m.Products));
               
             CreateMap<LarderDTO,Larder>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm=>vm.User,map =>map.MapFrom(m=>m.User)).
+                ForMember(vm=>vm.UserId,map =>map.MapFrom(m=>m.UserId)).
                 ForMember(vm => vm.Products, map => map.MapFrom(m => m.Products));
 
             CreateMap<Message, MessageDTO>().

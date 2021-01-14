@@ -7,7 +7,7 @@ namespace HealthyAndHappy.Models
 {
     public class ProductForRecipe : Product
     {
-        public int RecipeId { get; set; }
+        public string RecipeId { get; set; }
         public Recipe Recipe { get; set; }
     }
 }
