@@ -31,7 +31,7 @@ namespace HealthyAndHappy.Models
         public int Amount { get; set; }
         public int Kcal { get; set; }
         public int Portion { get; set; }
-        public int Chain { get; set; }
+        public int Chain { get; set; } //Jednostka miary
         public bool IsAccepted { get; set; }
         public int PortionSize { get; set; }
         public string IdUser { get; set; }
