@@ -1,40 +1,53 @@
 ﻿using AutoMapper;
+using HealthyAndHappy.Data;
 using HealthyAndHappy.Extensions.Mapper;
 using HealthyAndHappy.Models;
 using HealthyAndHappy.Models.ModelsDTO;
 using HealthyAndHappy.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HealthyAndHappy.Services
 {
     public class UserService : IUserService
     {
+        private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public UserService()
+        public UserService(ApplicationDbContext context, IMapper mapper)
         {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-            _mapper = config.CreateMapper();
+            _context = context;
+            _mapper = mapper;
         }
         public ResponseDTO EditUser(UserDTO userDTO)
         {
+
+            var user = _context.ApplicationUser.Where(b => b.Id == userDTO.Id).SingleOrDefault();
+            if (user == null)
+            {
+                return ResponseDTO.Unsuccessful();
+            }
+            user.Email = userDTO.Mail;
+            user.UserName = userDTO.Name;
+            user.PasswordHash = userDTO.Password;
+
             try
             {
-                var user = _mapper.Map<ApplicationUser>(userDTO);
-                // dbContext.Set<ApplicationUser>.Update(user);
-                return ResponseDTO.Successful();
+                _context.ApplicationUser.Update(user);
+                _context.SaveChanges();
             }
             catch (Exception e)
             {
-
                 return ResponseDTO.Unsuccessful();
-            }  
+
+            }
+            return ResponseDTO.Successful();
+
         }
 
         public UsersDTO GetAllUsers()
         {
-            // get all users
-            var users = new List<ApplicationUser>();
+            var users = _context.ApplicationUser.ToList();
             var userDto = _mapper.Map<UsersDTO>(users);
             return userDto;
         }
@@ -43,8 +56,7 @@ namespace HealthyAndHappy.Services
         {
             try
             {
-                //get user from db
-                var user = new ApplicationUser();
+                var user = _context.ApplicationUser.Where(u => u.Email == mail).SingleOrDefault();
                 return new ResponseAfterAutDTO() { IdUser = user.Id, IsAdmin = user.IsAdmin , Mail = user.Email, Status = ResponseStatus.Successful};
             }
             catch (Exception e)
