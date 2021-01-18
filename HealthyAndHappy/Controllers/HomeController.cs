@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HealthyAndHappy.Models;
+using System.Data.SqlClient;
 
 namespace HealthyAndHappy.Controllers
 {
@@ -28,7 +29,24 @@ namespace HealthyAndHappy.Controllers
         }
 
         public IActionResult SignUp() {
-            return View("Views/Home/SignUp.cshtml");
+           return View("Views/Home/SignUp.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(RegisterModel reg) {
+
+            string log = reg.Login;
+            string mail = reg.Email;
+            string pass = reg.Password;
+
+            using(SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=test;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")) 
+{
+                SqlCommand command = new SqlCommand($"INSERT INTO dbo.AspNetUsers (Id, IsAdmin, UserName, Email, EmailConfirmed, PasswordHash, PhoneNumberConfirmed, TwoFactorEnabled, LockOutEnabled, AccessFailedCount) VALUES ({null}, {0}, {log}, {mail}, {0}, {pass}, {0}, {0}, {0}, {0})", connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            return View("Views/Home/Index.cshtml");
         }
 
         public IActionResult Privacy()

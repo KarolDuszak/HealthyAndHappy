@@ -1,9 +1,8 @@
-﻿@model HealthyAndHappy.Models.RegisterModel
+﻿@model HealthyAndHappy.Models.RegisterModel;
 
 @{
-    ViewData["Title"] = "Register";
+    Layout = null;
 }
-
 
 @using WebMatrix.Data
 @using System.Data.SqlClient
@@ -64,30 +63,30 @@
 
     <main role="main" class="main-signuplogin cover-container mt-auto mb-auto d-flex p-3 mx-auto flex-column text-center">
 
+            <form class="form-loginsignup">
+                <img class="mb-4" src="~/Logo.png" alt="Logo" width="90" height="90">
+                <h1 class="h3 mb-4 fw-normal">Rejestracja</h1>
+                <label for="inputLogin" class="visually-hidden">Login</label>
+                <input value="XD" type="text" id="inputLogin" class="mb-3 form-control" placeholder="Login" required="" autofocus="" runat="server">
+                <label for="inputEmail" class="visually-hidden">Adres e-mail</label>
+                <input type="email" id="inputEmail" class="mb-3 form-control" placeholder="Adres e-mail" required="" autofocus="" runat="server">
+                <label for="inputPassword" class="visually-hidden">Hasło</label>
+                <input type="password" id="inputPassword" class="mb-3 form-control" placeholder="Hasło" required="" runat="server">
+                <div class="checkbox mb-3">
+                </div>
 
 
-        <form class="form-loginsignup" asp-action="SignUp">
-            <img class="mb-4" src="~/Logo.png" alt="Logo" width="90" height="90">
-
-            <h1 class="h3 mb-4 fw-normal">Rejestracja</h1>
-            <label asp-for="Login" class="visually-hidden class="control-label">Login</label>
-            <input required="" autofocus="" placeholder="Login" class="mb-3 form-control" id="inputLogin" type="text" asp-for="Login" class="form-control" />
 
 
-            <label asp-for="Email" class="visually-hidden class="control-label">Email</label>
-            <input required="" autofocus="" placeholder="Email" class="mb-3 form-control" id="inputEmail" type="email" asp-for="Email" class="form-control" />
+                <p class="mt-5 mb-3 text-muted">© Healthy and Happy</p>
+            </form>
+            <button onclick="myFun('xD', 'lol', '123')" class="mt-4 button-signup w-100 btn btn-lg btn-primary">Zarejestruj</button>
 
-            <label asp-for="Password" class="visually-hidden class="control-label">Password</label>
-            <input required="" autofocus="" placeholder="Password" class="mb-3 form-control" id="inputPassword" type="password" asp-for="Password" class="form-control" />
-
-            <div class="checkbox mb-3"></div>
-            <p class="mt-5 mb-3 text-muted">© Healthy and Happy</p>
-
-            <button class="mt-4 button-signup w-100 btn btn-lg btn-primary">Zarejestruj</button>
-        </form>
+            <div id="testt">x</div>
+        }
 
 
-</main>
+    </main>
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="~/Javascript.js"></script>
@@ -101,11 +100,3 @@
     *@
 </body>
 </html>
-
-
-
-
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

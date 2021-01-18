@@ -8,6 +8,9 @@ var showTooltip = true
 var hideUnowned = false;
 
 
+
+
+
 function searchForRecipe(){
 	var input, filter, ul, li, a, i, txtValue;
 	input = document.getElementById('searchBar');

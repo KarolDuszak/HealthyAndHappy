@@ -1,0 +1,1 @@
+﻿INSERT INTO dbo.AspNetUsers (Id, IsAdmin, UserName, Email, EmailConfirmed, PasswordHash, PhoneNumberConfirmed, TwoFactorEnabled, LockOutEnabled, AccessFailedCount) VALUES (0, 0, 'dasd', 'email@gmail.com', 0, '123', 0, 0, 0, 0);
