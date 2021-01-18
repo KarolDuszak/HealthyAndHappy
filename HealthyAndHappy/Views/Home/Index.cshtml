@@ -1,8 +1,142 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="@Url.Content("Stylesheet.css")" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+    <title>Hello, world!</title>
+</head>
+<body class="d-flex flex-column">
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item ml-4">
+                        <div class="navbar-button rotate">
+                            <a class="navbar-link" asp-action="SignIn" asp-controller="Home">Zaloguj</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ml-4">
+                        <div class="navbar-button rotate">
+                            <a class="navbar-link" asp-action="SignUp" asp-controller="Home">Zarejestruj</a>
+                        </div>
+                    </li>
+                </ul>
+                <a class="d-flex" asp-action="Index" asp-controller="Home">
+                    <img class="rotate" id="logo" src="~/Logo.png" width="100" height="100">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <main id="index-main" role="main" class="cover-container mt-auto mb-auto d-flex p-3 mx-auto flex-column text-center">
+
+        <h1 class="mb-5">
+            Healthy and Happy
+        </h1>
+
+        <div id="about-text" class="container-sm">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut vulputate neque. Fusce id dolor in ante suscipit interdum in elementum nunc. Nullam interdum augue vel ex faucibus, eget cursus diam interdum. Pellentesque mattis lectus fringilla, bibendum felis non, lacinia metus. Fusce hendrerit viverra dapibus. Donec dapibus turpis quam, vel tincidunt sapien eleifend eget. Nullam pretium blandit ex, in viverra purus sagittis quis.
+
+
+            Fusce pharetra justo ut diam laoreet, quis aliquet metus viverra. Ut euismod tellus quis sem malesuada, eget mollis orci euismod. Morbi dui nisl, mattis eu nulla ut, faucibus aliquet eros. Mauris tempor condimentum magna quis cursus. Suspendisse scelerisque, sapien sed vehicula tempor, massa nisi interdum tortor, sed tincidunt justo massa non risus. Duis ac diam accumsan, eleifend quam nec, interdum felis. Aenean varius finibus erat quis tincidunt. In consequat eleifend metus, a tempus tellus semper in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque egestas consectetur feugiat. In euismod arcu ut lacus aliquet pharetra. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras egestas finibus nisi sit amet vehicula. Aliquam vel finibus lacus, eu elementum metus. Quisque vehicula sapien in posuere hendrerit. Nulla feugiat ullamcorper magna nec molestie.
+
+        </div>
+    </main>
+
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+
+
+    <script src="javascript.js"></script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    @*
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    *@
+</body>
+</html>

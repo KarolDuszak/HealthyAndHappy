@@ -23,6 +23,14 @@ namespace HealthyAndHappy.Controllers
             return View();
         }
 
+        public IActionResult SignIn() {
+            return View("Views/Home/SignIn.cshtml");
+        }
+
+        public IActionResult SignUp() {
+            return View("Views/Home/SignUp.cshtml");
+        }
+
         public IActionResult Privacy()
         {
             return View();
