@@ -1,0 +1,362 @@
+﻿@{
+    ViewData["Title"] = "Larder";
+}
+
+
+@using WebMatrix.Data
+@using System.Data.SqlClient
+@using System.Configuration;
+@using System.Data;
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<link rel="stylesheet" href="~/Stylesheet.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+	<title>Spiżarka</title>
+</head>
+<body class="d-flex flex-column">
+	<div class="load"></div>
+
+	<div id="remember-checkbox">
+		<span>Nie pytaj ponownie:</span>
+		<label class="control control-checkbox">
+			<input type="checkbox" />
+			<div class="control_indicator"></div>
+		</label>
+	</div>
+	<div id="tooltip-wrapper">
+
+		<div id="close-tooltip" class="close">
+			<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+				<path class="checkmark_check" fill="none" d="M16 16 36 36 M36 16 16 36" />
+			</svg>
+		</div>
+
+		<div id="tooltip">
+			Przytrzymaj przycisk dodawania / odejmowania, aby dodać produkty w dużych ilościach.
+		</div>
+	</div>
+
+
+	<div id="spacer"></div>
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav me-auto mb-2 mb-md-0">
+					<li class="nav-item ml-4">
+						<div class="navbar-button rotate">
+							<a class="navbar-link" asp-action="Larder" asp-controller="Home">Spiżarka</a>
+						</div>
+						<div id="selector">&#9650;</div>
+					</li>
+					<li class="nav-item ml-4">
+						<div class="navbar-button rotate">
+							<a class="navbar-link" href="recipes.html">Przepisy</a>
+						</div>
+					</li>
+					<li class="nav-item ml-4">
+						<div class="navbar-button rotate">
+							<a class="navbar-link" href="history.html">Historia</a>
+						</div>
+					</li>
+					<li class="nav-item ml-4">
+						<div class="navbar-button rotate">
+							<a class="navbar-link" href="options.html">Opcje</a>
+						</div>
+					</li>
+					<li id="nav-item-logout" class="nav-item ml-4">
+						<div class="navbar-button rotate">
+							<a class="navbar-link" asp-action="Logout" asp-controller="Home">Wyloguj</a>
+						</div>
+					</li>
+				</ul>
+
+				<a class="d-flex" href="index.html">
+					<img class="rotate" id="logo" src="~/Logo.png" width="100" height="100">
+				</a>
+			</div>
+	</nav>
+
+
+	<main role="main" class="cover-container d-flex p-3 mx-auto flex-column text-center">
+
+		@{
+
+                SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=test;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+                SqlCommand meat = new SqlCommand("");
+
+
+
+        <div class="row justify-content-around">
+			<div id="add-product-gray-screen">
+
+            </div>
+
+            <div class="fixed-top" id="add-product-adding-wrapper">
+				<!-- DO ZMIANY, PRZEKOPIOWANE Z SIGNUP -->
+				<form class="form-addproduct container-sm">
+					<div class="close">
+						<svg id="close-form-addproduct" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+							<path class="checkmark_check" fill="none" d="M16 16 36 36 M36 16 16 36" />
+						</svg>
+					</div>
+					<h1 class="h2 mb-5 fw-normal">
+						<div class="navbar-button">Dodawanie produktu</div>
+					</h1>
+
+					<div class="row justify-content-around">
+						<label for="inputProductName" class="visually-hidden">Nazwa produktu</label>
+						<input type="text" id="inputProductName" class="mb-3 form-control" placeholder="Nazwa produktu" required="" autofocus="">
+					</div>
+
+					<div class="row justify-content-center">
+
+						<div id="inputMeasurement-wrapper">
+
+                            <label for="inputMeasurement" class="visually-hidden">Jednostka miary</label>
+							<select class="select2-form" name="inputMeasurement" id="inputMeasurement" required>
+								<option></option>
+								<option value="gram">Gram</option>
+
+                                <option value="milliliter">Mililitr</option>
+								<option value="piece">Sztuka</option>
+
+                                <option value="pinch">Szczypta</option>
+							</select>
+						</div>
+
+						<label for="inputAmount" class="visually-hidden">Ilość w jednostkach</label>
+						<input type="number" id="inputAmount" maxlength="3" class="form-control mb-3" placeholder="Ilość w jednostkach" required="">
+
+
+						<label for="inputCalories" class="visually-hidden">Kaloryczność</label>
+						<input type="number" id="inputCalories" maxlength="4" class="form-control mb-3" placeholder="Kaloryczność na 1 jednostkę" required="">
+
+
+
+						<label for="inputCarbohydrates" class="visually-hidden">Węglowodany</label>
+						<input type="number" id="inputCarbohydrates" maxlength="3" class="form-control mb-3" placeholder="Ilość węglowodanów" required="">
+
+						<label for="inputProteins" class="visually-hidden">Białko</label>
+						<input type="number" id="inputProteins" maxlength="3" class="form-control mb-3" placeholder="Ilość białka" required="">
+
+						<label for="inputFats" class="visually-hidden">Tłuszcze</label>
+						<input type="number" id="inputFats" maxlength="3" class="form-control mb-3" placeholder="Ilość tłuszczów" required="">
+
+
+
+					</div>
+					<button class="mt-5 mb-4 button-signup w-100 btn btn-lg btn-primary" type="submit">Dodaj</button>
+				</form>
+				<!-- DO ZMIANY, PRZEKOPIOWANE Z SIGNUP -->
+			</div>
+
+
+			<div class="container-lg" id="add-product-wrapper">
+				<div id="add-product">
+                    Dodaj nowy produkt
+                </div>
+
+
+				<div id="hide-unowned-products">
+                    Ukryj nieposiadane produkty
+				</div>
+
+				<div id="save-larder">
+                    Zapisz
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="product-wrapper">
+					<h1>Mięso</h1>
+					<ul class="product-list list-unstyled col-md-3">
+
+
+
+						<li class="product">
+							<div class="product-name"></div>
+							<div class="amount"></div>
+							<div class="quantity-control">
+								<button class="btn btn-secondary decrement" role="button"></button>
+								<form class="quantity-form">
+									<input value="0" type="number" class="quantity-counter" type="number" min="0" maxlength="3">
+									<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+									<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+								</form>
+								<button class="btn btn-secondary increment" role="button"></button>
+							</div>
+						</li>
+
+
+
+					</ul>
+				</div>
+
+
+				<div class="product-wrapper">
+					<h1>Owoce morza</h1>
+					<ul class="product-list list-unstyled col-md-3">
+
+						<li class="product">
+							<div class="product-name">Nazwa produktu</div>
+							<div class="amount">Xg</div>
+							<div class="quantity-control">
+								<button class="btn btn-secondary decrement" role="button">-</button>
+								<form class="quantity-form">
+									<input value="0" type="number" class="quantity-counter" type="number" min="0" maxlength="3"></input>
+									<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+									<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+								</form>
+								<button class="btn btn-secondary increment" role="button">+</button>
+							</div>
+						</li>
+					</ul>
+
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Tłuszcze</h1>
+					<ul class="product-list list-unstyled col-md-3">
+
+
+						<li class="product">
+							<div class="product-name">Nazwa produktu</div>
+							<div class="amount">Xg</div>
+							<div class="quantity-control">
+								<button class="btn btn-secondary decrement" role="button">-</button>
+								<form class="quantity-form">
+									<input value="0" type="number" class="quantity-counter" type="number" min="0" maxlength="3"></input>
+									<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+									<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+								</form>
+								<button class="btn btn-secondary increment" role="button">+</button>
+							</div>
+						</li>
+
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Warzywa</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Owoce</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Nabiał</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Węglowodany</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Przyprawy</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Alkohole</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Sypkie</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Orzechy</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Napoje</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Sosy</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+				<div class="product-wrapper">
+					<h1>Specjalne</h1>
+					<ul class="product-list list-unstyled col-md-3">
+					</ul><!-- /.col-lg-4 -->
+				</div>
+
+			</div>
+
+
+		}
+
+
+		</main>
+
+
+	<script src="~/Javascript.js"></script>
+
+	<!-- Optional JavaScript; choose one of the two! -->
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	@*
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+	*@
+</body>
+</html>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
