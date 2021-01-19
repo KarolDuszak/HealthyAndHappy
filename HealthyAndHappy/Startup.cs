@@ -29,6 +29,15 @@ namespace HealthyAndHappy
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
             services.AddControllersWithViews();
             services.AddCors();// removing http transfer limits
             services.Configure<CookiePolicyOptions>(options =>
@@ -75,6 +84,8 @@ namespace HealthyAndHappy
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

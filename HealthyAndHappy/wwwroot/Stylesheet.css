@@ -445,7 +445,7 @@ main{
 	background-color:#5ED957;
 }
 
-#add-product, #hide-unowned-products{
+#add-product, #hide-unowned-products, #save-larder{
 	background-color:#7ED957;
 	padding:10px;
 	border-radius:4px;
@@ -460,7 +460,7 @@ main{
 	user-select: none; 
 }
 
-#add-product{
+#add-product, #hide-unowned-products{
 	margin-right:2rem;
 }
 
