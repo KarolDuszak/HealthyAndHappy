@@ -3,10 +3,18 @@ body,html{
 	overflow-x:hidden;
 }
 
+
+
 *{
 	padding:0;
 	--locked-color: #7ED957;
 	--unlocked-color: #7ED957;
+}
+
+#login-warning {
+	font-size:1rem;
+	color:red;
+	margin-bottom:1rem;
 }
 
 

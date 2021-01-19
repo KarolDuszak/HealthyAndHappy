@@ -1,6 +1,15 @@
-﻿@{
-    ViewBag.Title = "SignIn";
+﻿@model HealthyAndHappy.Models.LoginModel
+
+@using WebMatrix.Data
+@using System.Data.SqlClient
+@using System.Configuration;
+@using System.Data;
+
+@{
+    ViewData["Title"] = "SignIn";
 }
+
+
 
 
 <!doctype html>
@@ -17,9 +26,11 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
-    <title>Hello, world!</title>
+
+<title>Hello, world!</title>
 </head>
 <body class="d-flex flex-column">
+
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
         <div class="container-fluid">
@@ -50,29 +61,41 @@
             </div>
     </nav>
 
-
     <main role="main" class="main-signuplogin cover-container mt-auto mb-auto d-flex p-3 mx-auto flex-column text-center">
 
 
-        <!-- DO ZMIANY, PRZEKOPIOWANE Z SIGNUP -->
-        <form class="form-loginsignup">
 
+
+
+
+
+        <form class="form-loginsignup" asp-action="SignIn">
             <img class="mb-4" src="~/Logo.png" alt="Logo" width="90" height="90">
+
+
             <h1 class="h3 mb-4 fw-normal">Logowanie</h1>
-            <label for="inputEmail" class="visually-hidden">Adres e-mail</label>
-            <input type="email" id="inputEmail" class="mb-3 form-control" placeholder="Adres e-mail" required="" autofocus="">
-            <label for="inputPassword" class="visually-hidden">Hasło</label>
-            <input type="password" id="inputPassword" class="mb-3 form-control" placeholder="Hasło" required="">
-            <div class="checkbox mb-3">
-            </div>
-            <button class="mt-4 button-signup w-100 btn btn-lg btn-primary" type="submit">Zaloguj</button>
+
+            <div id="login-warning">@TempData["Message"]</div>
+
+            <label asp-for="Email" class="visually-hidden class="control-label">Email</label>
+            <input required="" autofocus="" placeholder="Email" class="mb-3 form-control" id="inputEmail" type="email" asp-for="Email" class="form-control" />
+
+            <label asp-for="Password" class="visually-hidden class="control-label">Password</label>
+            <input required="" autofocus="" placeholder="Password" class="mb-3 form-control" id="inputPassword" type="password" asp-for="Password" class="form-control" />
+
+
+            <div class="checkbox mb-3"></div>
             <p class="mt-5 mb-3 text-muted">© Healthy and Happy</p>
+
+
+
+
+            <button class="mt-4 button-signup w-100 btn btn-lg btn-primary">Zaloguj</button>
+
         </form>
-        <!-- DO ZMIANY, PRZEKOPIOWANE Z SIGNUP -->
 
 
     </main>
-
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="~/Javascript.js"></script>
@@ -86,3 +109,9 @@
     *@
 </body>
 </html>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
