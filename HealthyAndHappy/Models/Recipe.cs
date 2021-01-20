@@ -34,6 +34,7 @@ namespace HealthyAndHappy.Models
         public int Carbohydrates { get; set; }
         public int Proteins { get; set; }
         public byte[] imageByteArray { get; set; }
+        //?? circular reference
         public List<ProductForRecipe> Products { get; set; }
 
     }

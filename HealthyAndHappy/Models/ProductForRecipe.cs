@@ -8,6 +8,7 @@ namespace HealthyAndHappy.Models
     public class ProductForRecipe : Product
     {
         public string RecipeId { get; set; }
+        //?? circular reference
         public Recipe Recipe { get; set; }
     }
 }

@@ -10,6 +10,8 @@ namespace HealthyAndHappy.Models
         public string Id { get; set; }
         public ApplicationUser User { get; set; }
         public string UserId { get; set; }
+
+        //?? circular reference
         public List<ProductForLarder> Products { get; set; } 
     }
 }
