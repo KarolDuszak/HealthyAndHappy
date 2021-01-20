@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace HealthyAndHappy.Models
 {
-    public class Meat:Product
+    public class ProductForLarder : Product
     {
+        public string LarderId { get; set; }
+        public Larder Larder { get; set; }
     }
 }

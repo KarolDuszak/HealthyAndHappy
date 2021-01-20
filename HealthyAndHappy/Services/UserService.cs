@@ -35,6 +35,9 @@ namespace HealthyAndHappy.Services
             {
                 _context.ApplicationUser.Update(user);
                 _context.SaveChanges();
+
+                return ResponseDTO.Successful();
+
             }
             catch (Exception e)
             {

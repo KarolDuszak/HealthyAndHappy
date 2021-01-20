@@ -35,47 +35,25 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Recipe, map => map.MapFrom(m => m.Recipe)).
-                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date));
+                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date)).
+                ForMember(vm=>vm.UserId, map=>map.MapFrom(m=>m.UserId));
+
             CreateMap<HistoryDTO, History>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Recipe, map => map.MapFrom(m => m.Recipe)).
-                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date));
+                ForMember(vm => vm.Date, map => map.MapFrom(m => m.Date)).
+                ForMember(vm => vm.UserId, map => map.MapFrom(m => m.UserId));
 
             CreateMap<Larder, LarderDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.User, map => map.MapFrom(m => m.User)).
-                ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
-                ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
-                ForMember(vm => vm.Sauces, map => map.MapFrom(m => m.Sauces)).
-                ForMember(vm => vm.Specials, map => map.MapFrom(m => m.Specials)).
-                ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
-                ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
-                ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
-                ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
-                ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
-                ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
-                ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
-                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits));
+                ForMember(vm => vm.UserId, map => map.MapFrom(m => m.UserId)).
+                ForMember(vm => vm.Products, map => map.MapFrom(m => m.Products));
+              
             CreateMap<LarderDTO,Larder>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm=>vm.User,map =>map.MapFrom(m=>m.User)).
-                ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
-                ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
-                ForMember(vm => vm.Sauces, map => map.MapFrom(m => m.Sauces)).
-                ForMember(vm => vm.Specials, map => map.MapFrom(m => m.Specials)).
-                ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
-                ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
-                ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
-                ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
-                ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
-                ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
-                ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
-                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits));
+                ForMember(vm=>vm.UserId,map =>map.MapFrom(m=>m.UserId)).
+                ForMember(vm => vm.Products, map => map.MapFrom(m => m.Products));
 
             CreateMap<Message, MessageDTO>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
@@ -96,25 +74,12 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
                 ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
                 ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
-                ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
                 ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
                 ForMember(vm => vm.PreprationTime, map => map.MapFrom(m => m.PreprationTime)).
-                ForMember(vm => vm.Sauces, map => map.MapFrom(m => m.Sauces)).
-                ForMember(vm => vm.Specials, map => map.MapFrom(m => m.Specials)).
-                ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
-                ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
-                ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
                 ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category)).
                 ForMember(vm => vm.Description, map => map.MapFrom(m => m.Description)).
-                ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
-                ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
-                ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
-                ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
-                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits)).
-                ForMember(vm => vm.imageByteArray, map => map.MapFrom(m => m.imageByteArray)); 
+                ForMember(vm => vm.imageByteArray, map => map.MapFrom(m => m.imageByteArray)).
+                ForMember(vm=>vm.Products,map=>map.MapFrom(m=>m.Products)); 
             CreateMap<RecipeDTO, Recipe>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
                 ForMember(vm => vm.Maker.Id, map => map.MapFrom(m => m.IdUser)).
@@ -123,403 +88,70 @@ namespace HealthyAndHappy.Extensions.Mapper
                 ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
                 ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
                 ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
-                ForMember(vm => vm.Meats, map => map.MapFrom(m => m.Meats)).
                 ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Nuts, map => map.MapFrom(m => m.Nuts)).
                 ForMember(vm => vm.PreprationTime, map => map.MapFrom(m => m.PreprationTime)).
-                ForMember(vm => vm.Sauces, map => map.MapFrom(m => m.Sauces)).
-                ForMember(vm => vm.Specials, map => map.MapFrom(m => m.Specials)).
-                ForMember(vm => vm.Spices, map => map.MapFrom(m => m.Spices)).
-                ForMember(vm => vm.Vegetables, map => map.MapFrom(m => m.Vegetables)).
-                ForMember(vm => vm.Alcohols, map => map.MapFrom(m => m.Alcohols)).
-                ForMember(vm => vm.BreadsAndNoodles, map => map.MapFrom(m => m.BreadsAndNoodles)).
                 ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category)).
                 ForMember(vm => vm.Description, map => map.MapFrom(m => m.Description)).
-                ForMember(vm => vm.Diaries, map => map.MapFrom(m => m.Diaries)).
-                ForMember(vm => vm.Drinks, map => map.MapFrom(m => m.Drinks)).
-                ForMember(vm => vm.DryGoods, map => map.MapFrom(m => m.DryGoods)).
-                ForMember(vm => vm.OilsAndFats, map => map.MapFrom(m => m.OilsAndFats)).
-                ForMember(vm => vm.FishAndSeafoods, map => map.MapFrom(m => m.FishAndSeafoods)).
-                ForMember(vm => vm.Fruits, map => map.MapFrom(m => m.Fruits)).
-                ForMember(vm => vm.imageByteArray, map => map.MapFrom(m => m.imageByteArray));
+                ForMember(vm => vm.imageByteArray, map => map.MapFrom(m => m.imageByteArray)).
+                ForMember(vm => vm.Products, map => map.MapFrom(m => m.Products));
 
-            CreateMap<Alcohol, ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
+            CreateMap<ProductForLarder, ProductDTO>().
+                ForMember(vm => vm.Id, map => map.MapFrom(m=>m.Id)).
+                ForMember(vm => vm.Amount, map=>map.MapFrom(m=>m.Amount)).
+                ForMember(vm=>vm.Kcal , map=>map.MapFrom(m=>m.Kcal)).
                 ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Alcohol>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
                 ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
                 ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
                 ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
+                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
+                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
+                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
+                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
+                ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category));
+            CreateMap< ProductDTO, ProductForLarder>().
+                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
+                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
+                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
+                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
+                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
+                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
+                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
+                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
+                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
+                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
+                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
+                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
+                ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category));
 
-            CreateMap<BreadAndNoodle, ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
+            CreateMap<ProductForRecipe, ProductDTO>().
+                ForMember(vm => vm.Id, map => map.MapFrom(m=>m.Id)).
+                ForMember(vm => vm.Amount, map=>map.MapFrom(m=>m.Amount)).
+                ForMember(vm=>vm.Kcal , map=>map.MapFrom(m=>m.Kcal)).
                 ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO, BreadAndNoodle>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
                 ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
                 ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
                 ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Diary, ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
+                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
+                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
+                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
                 ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
+                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
+                ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category));
+            CreateMap< ProductDTO, ProductForRecipe>().
                 ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO, Diary>().
                 ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
                 ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
                 ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Drink, ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
                 ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
                 ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
                 ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO, Drink>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
+                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
+                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
+                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
                 ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<DryGood,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,DryGood>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<FishAndSeafood,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,FishAndSeafood>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Fruit,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Fruit>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Meat,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Meat>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Nut,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Nut>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<OilAndFat,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,OilAndFat>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Sauce,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Sauce>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Special,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Special>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Spice,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Spice>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-
-            CreateMap<Vegetable,ProductDTO>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
-            CreateMap<ProductDTO,Vegetable>().
-                ForMember(vm => vm.Amount, map => map.MapFrom(m => m.Amount)).
-                ForMember(vm => vm.Carbohydrates, map => map.MapFrom(m => m.Carbohydrates)).
-                ForMember(vm => vm.Chain, map => map.MapFrom(m => m.Chain)).
-                ForMember(vm => vm.Fat, map => map.MapFrom(m => m.Fat)).
-                ForMember(vm => vm.Id, map => map.MapFrom(m => m.Id)).
-                ForMember(vm => vm.IdUser, map => map.MapFrom(m => m.IdUser)).
-                ForMember(vm => vm.IsAccepted, map => map.MapFrom(m => m.IsAccepted)).
-                ForMember(vm => vm.Kcal, map => map.MapFrom(m => m.Kcal)).
-                ForMember(vm => vm.Name, map => map.MapFrom(m => m.Name)).
-                ForMember(vm => vm.Portion, map => map.MapFrom(m => m.Portion)).
-                ForMember(vm => vm.PortionSize, map => map.MapFrom(m => m.PortionSize)).
-                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins));
+                ForMember(vm => vm.Proteins, map => map.MapFrom(m => m.Proteins)).
+                ForMember(vm => vm.Category, map => map.MapFrom(m => m.Category));
         }
     }
 }

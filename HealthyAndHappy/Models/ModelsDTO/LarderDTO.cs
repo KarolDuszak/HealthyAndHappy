@@ -8,20 +8,7 @@ namespace HealthyAndHappy.Models.ModelsDTO
     public class LarderDTO
     {
         public string Id { get; set; }
-        public ApplicationUser User { get; set; }
-        public List<Meat> Meats { get; set; }
-        public List<Vegetable> Vegetables { get; set; }
-        public List<Fruit> Fruits { get; set; }
-        public List<Diary> Diaries { get; set; }
-        public List<BreadAndNoodle> BreadsAndNoodles { get; set; }
-        public List<DryGood> DryGoods { get; set; }
-        public List<OilAndFat> OilsAndFats { get; set; }
-        public List<Alcohol> Alcohols { get; set; }
-        public List<Spice> Spices { get; set; }
-        public List<FishAndSeafood> FishAndSeafoods { get; set; }
-        public List<Nut> Nuts { get; set; }
-        public List<Drink> Drinks { get; set; }
-        public List<Sauce> Sauces { get; set; }
-        public List<Special> Specials { get; set; }
+        public string UserId { get; set; }
+        public List<ProductForLarder> Products { get; set; }
     }
 }
