@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Larder";
+﻿@model HealthyAndHappy.Models.AddLarderModel
+
+@{
+	ViewData["Title"] = "Larder";
 }
 
 
@@ -7,7 +9,7 @@
 @using System.Data.SqlClient
 @using System.Configuration;
 @using System.Data;
-
+@using Microsoft.AspNetCore.Http;
 
 
 
@@ -94,256 +96,867 @@
 					<img class="rotate" id="logo" src="~/Logo.png" width="100" height="100">
 				</a>
 			</div>
+		</div>
 	</nav>
 
 
 	<main role="main" class="cover-container d-flex p-3 mx-auto flex-column text-center">
 
+
+		@{var larderId = 0;}
+
 		@{
 
-                SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=test;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+			using(SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=test;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")) {
 
-                SqlCommand meat = new SqlCommand("");
+				connection.Open();
+
+				SqlCommand userIdQuery = new SqlCommand($"SELECT Id FROM dbo.AspNetUsers WHERE Email = '{TempData["mail"]}'", connection);
 
 
 
-        <div class="row justify-content-around">
-			<div id="add-product-gray-screen">
 
-            </div>
+				int userId = (int) Convert.ToInt32(userIdQuery.ExecuteScalar()) + 1;
 
-            <div class="fixed-top" id="add-product-adding-wrapper">
-				<!-- DO ZMIANY, PRZEKOPIOWANE Z SIGNUP -->
-				<form class="form-addproduct container-sm">
-					<div class="close">
-						<svg id="close-form-addproduct" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-							<path class="checkmark_check" fill="none" d="M16 16 36 36 M36 16 16 36" />
-						</svg>
-					</div>
-					<h1 class="h2 mb-5 fw-normal">
-						<div class="navbar-button">Dodawanie produktu</div>
-					</h1>
+				SqlCommand larderIdQuery = new SqlCommand($"SELECT * FROM dbo.Larder where UserId = '{userId}'", connection);
 
-					<div class="row justify-content-around">
-						<label for="inputProductName" class="visually-hidden">Nazwa produktu</label>
-						<input type="text" id="inputProductName" class="mb-3 form-control" placeholder="Nazwa produktu" required="" autofocus="">
+
+				larderId = (int) Convert.ToInt32(larderIdQuery.ExecuteScalar()) + 1;
+
+				<input type="hidden" id="larderIdVar" value=@larderId>
+				<input type="hidden" id="userIdVar" value=@userId>
+
+				<div class="row justify-content-around">
+					<div id="add-product-gray-screen">
+
 					</div>
 
-					<div class="row justify-content-center">
 
-						<div id="inputMeasurement-wrapper">
 
-                            <label for="inputMeasurement" class="visually-hidden">Jednostka miary</label>
-							<select class="select2-form" name="inputMeasurement" id="inputMeasurement" required>
-								<option></option>
-								<option value="gram">Gram</option>
 
-                                <option value="milliliter">Mililitr</option>
-								<option value="piece">Sztuka</option>
 
-                                <option value="pinch">Szczypta</option>
-							</select>
+					<div class="fixed-top" id="add-product-adding-wrapper">
+
+						<form asp-action="Larder" class="form-addproduct container-sm">
+
+							<input asp-for="larderId" type="hidden" class="form-control" value=@larderId />
+							<input asp-for="userId" type="hidden" class="form-control" value=@userId />
+
+							<div class="close">
+								<svg id="close-form-addproduct" class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+									<path class="checkmark_check" fill="none" d="M16 16 36 36 M36 16 16 36" />
+								</svg>
+							</div>
+							<h1 class="h2 mb-5 fw-normal">
+								<div class="navbar-button">Dodawanie produktu</div>
+							</h1>
+
+							<div class="row justify-content-around">
+								<label asp-for="Name" class="visually-hidden">Nazwa produktu</label>
+								<input asp-for="Name" type="text" id="inputProductName" class="mb-3 form-control" placeholder="Nazwa produktu" required="" autofocus="">
+							</div>
+
+							<div class="row justify-content-center">
+
+								<div id="inputMeasurement-wrapper">
+
+									<label asp-for="Measurement" class="visually-hidden">Jednostka miary</label>
+									<select asp-for="Measurement" class="select2-form select2Measurement" name="inputMeasurement" id="inputMeasurement" required>
+										<option></option>
+										<option value="gram">Gram</option>
+
+										<option value="milliliter">Mililitr</option>
+										<option value="piece">Sztuka</option>
+
+										<option value="pinch">Szczypta</option>
+									</select>
+								</div>
+
+								<label asp-for="Amount" class="visually-hidden">Ilość w jednostkach</label>
+								<input asp-for="Amount" type="number" id="inputAmount" maxlength="3" class="form-control mb-3" placeholder="Ilość w jednostkach" required="">
+
+
+								<label asp-for="Calories" class="visually-hidden">Kaloryczność</label>
+								<input asp-for="Calories" type="number" id="inputCalories" maxlength="4" class="form-control mb-3" placeholder="Kaloryczność na 1 jednostkę" required="">
+
+
+								<label asp-for="Carbs" class="visually-hidden">Węglowodany</label>
+								<input asp-for="Carbs" type="number" id="inputCarbohydrates" maxlength="3" class="form-control mb-3" placeholder="Ilość węglowodanów" required="">
+
+								<label asp-for="Proteins" class="visually-hidden">Białko</label>
+								<input asp-for="Proteins" type="number" id="inputProteins" maxlength="3" class="form-control mb-3" placeholder="Ilość białka" required="">
+
+								<label asp-for="Fats" class="visually-hidden">Tłuszcze</label>
+								<input asp-for="Fats" type="number" id="inputFats" maxlength="3" class="form-control mb-3" placeholder="Ilość tłuszczów" required="">
+
+
+								<div id="inputCategory-wrapper">
+
+									<label asp-for="Category" class="visually-hidden">Kategoria</label>
+									<select asp-for="Category" class="select2-form select2Category" name="inputCategory" id="inputCategory" required>
+										<option></option>
+										<option value="1">Mięso</option>
+										<option value="2">Owoce morza</option>
+										<option value="3">Tłuszcze</option>
+										<option value="4">Warzywa</option>
+										<option value="5">Owoce</option>
+										<option value="6">Nabiał</option>
+										<option value="7">Węglowodany</option>
+										<option value="8">Przyprawy</option>
+										<option value="9">Alkohole</option>
+										<option value="10">Sypkie</option>
+										<option value="11">Orzechy</option>
+										<option value="12">Napoje</option>
+										<option value="13">Sosy</option>
+										<option value="14">Specjalne</option>
+									</select>
+								</div>
+
+							</div>
+							<button class="mt-5 mb-4 button-signup w-100 btn btn-lg btn-primary" type="submit">Dodaj</button>
+						</form>
+
+					</div>
+
+
+
+
+
+					<div class="container-lg" id="add-product-wrapper">
+						<div id="add-product">
+							Dodaj nowy produkt
 						</div>
 
-						<label for="inputAmount" class="visually-hidden">Ilość w jednostkach</label>
-						<input type="number" id="inputAmount" maxlength="3" class="form-control mb-3" placeholder="Ilość w jednostkach" required="">
 
-
-						<label for="inputCalories" class="visually-hidden">Kaloryczność</label>
-						<input type="number" id="inputCalories" maxlength="4" class="form-control mb-3" placeholder="Kaloryczność na 1 jednostkę" required="">
-
-
-
-						<label for="inputCarbohydrates" class="visually-hidden">Węglowodany</label>
-						<input type="number" id="inputCarbohydrates" maxlength="3" class="form-control mb-3" placeholder="Ilość węglowodanów" required="">
-
-						<label for="inputProteins" class="visually-hidden">Białko</label>
-						<input type="number" id="inputProteins" maxlength="3" class="form-control mb-3" placeholder="Ilość białka" required="">
-
-						<label for="inputFats" class="visually-hidden">Tłuszcze</label>
-						<input type="number" id="inputFats" maxlength="3" class="form-control mb-3" placeholder="Ilość tłuszczów" required="">
-
-
-
+						<div id="hide-unowned-products">
+							Ukryj nieposiadane produkty
+						</div>
 					</div>
-					<button class="mt-5 mb-4 button-signup w-100 btn btn-lg btn-primary" type="submit">Dodaj</button>
-				</form>
-				<!-- DO ZMIANY, PRZEKOPIOWANE Z SIGNUP -->
-			</div>
 
 
-			<div class="container-lg" id="add-product-wrapper">
-				<div id="add-product">
-                    Dodaj nowy produkt
-                </div>
 
 
-				<div id="hide-unowned-products">
-                    Ukryj nieposiadane produkty
+
+
+
+
+
+
+					<div class="product-wrapper">
+
+						@{
+							SqlCommand meat = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 1", connection);
+
+							SqlDataReader reader = meat.ExecuteReader();
+						}
+
+
+
+						<h1>Mięso</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand seaFood = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 2", connection);
+
+							reader = seaFood.ExecuteReader();
+						}
+
+
+
+						<h1>Owoce morza</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand fats = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 3", connection);
+
+							reader = fats.ExecuteReader();
+						}
+
+
+
+						<h1>Tłuszcze</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand vegetables = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 4", connection);
+
+							reader = vegetables.ExecuteReader();
+						}
+
+
+
+						<h1>Warzywa</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand fruits = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 5", connection);
+
+							reader = fruits.ExecuteReader();
+						}
+
+
+
+						<h1>Owoce</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand dairy = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 6", connection);
+
+							reader = dairy.ExecuteReader();
+						}
+
+
+
+						<h1>Nabiał</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand carbohydrates = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 7", connection);
+
+							reader = carbohydrates.ExecuteReader();
+						}
+
+
+
+						<h1>Węglowodany</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand spices = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 8", connection);
+
+							reader = spices.ExecuteReader();
+						}
+
+
+
+						<h1>Przyprawy</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand alcohol = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 9", connection);
+
+							reader = alcohol.ExecuteReader();
+						}
+
+
+
+						<h1>Alkohol</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand dryGoods = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 10", connection);
+
+							reader = dryGoods.ExecuteReader();
+						}
+
+
+
+						<h1>Sypkie</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand nuts = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 11", connection);
+
+							reader = nuts.ExecuteReader();
+						}
+
+
+
+						<h1>Orzechy</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand drinks = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 12", connection);
+
+							reader = drinks.ExecuteReader();
+						}
+
+
+
+						<h1>Napoje</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand sauces = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 13", connection);
+
+							reader = sauces.ExecuteReader();
+						}
+
+
+
+						<h1>Sos</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
+					<div class="product-wrapper">
+						@{
+							SqlCommand specials = new SqlCommand($"SELECT  Name, PortionSize, Amount, Chain FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = '{userId}' AND Category = 14", connection);
+
+							reader = specials.ExecuteReader();
+						}
+
+
+
+						<h1>Specjalne</h1>
+						<ul class="product-list list-unstyled col-md-3">
+
+							@{
+								while(reader.Read()) {
+
+									string chain = "";
+
+									switch(@reader[3]) {
+										case 1:
+										chain = " g";
+										break;
+
+										case 2:
+										chain = " ml";
+										break;
+
+										default:
+										chain = "";
+										break;
+									}
+
+									<li class="product">
+										<div class="product-name">@reader[0]</div>
+										<div class="amount">@reader[1]@chain</div>
+										<div class="quantity-control">
+											<button class="btn btn-secondary decrement" role="button">-</button>
+											<form class="quantity-form">
+												<input value="@reader[2]" type="number" class="quantity-counter" min="0" maxlength="3">
+												<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
+												<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
+											</form>
+											<button class="btn btn-secondary increment" role="button">+</button>
+										</div>
+									</li>
+								}
+								reader.Close();
+							}
+						</ul>
+					</div>
+
 				</div>
 
-				<div id="save-larder">
-                    Zapisz
-                </div>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-                <div class="product-wrapper">
-					<h1>Mięso</h1>
-					<ul class="product-list list-unstyled col-md-3">
-
-
-
-						<li class="product">
-							<div class="product-name"></div>
-							<div class="amount"></div>
-							<div class="quantity-control">
-								<button class="btn btn-secondary decrement" role="button"></button>
-								<form class="quantity-form">
-									<input value="0" type="number" class="quantity-counter" type="number" min="0" maxlength="3">
-									<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
-									<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
-								</form>
-								<button class="btn btn-secondary increment" role="button"></button>
-							</div>
-						</li>
-
-
-
-					</ul>
-				</div>
-
-
-				<div class="product-wrapper">
-					<h1>Owoce morza</h1>
-					<ul class="product-list list-unstyled col-md-3">
-
-						<li class="product">
-							<div class="product-name">Nazwa produktu</div>
-							<div class="amount">Xg</div>
-							<div class="quantity-control">
-								<button class="btn btn-secondary decrement" role="button">-</button>
-								<form class="quantity-form">
-									<input value="0" type="number" class="quantity-counter" type="number" min="0" maxlength="3"></input>
-									<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
-									<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
-								</form>
-								<button class="btn btn-secondary increment" role="button">+</button>
-							</div>
-						</li>
-					</ul>
-
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Tłuszcze</h1>
-					<ul class="product-list list-unstyled col-md-3">
-
-
-						<li class="product">
-							<div class="product-name">Nazwa produktu</div>
-							<div class="amount">Xg</div>
-							<div class="quantity-control">
-								<button class="btn btn-secondary decrement" role="button">-</button>
-								<form class="quantity-form">
-									<input value="0" type="number" class="quantity-counter" type="number" min="0" maxlength="3"></input>
-									<a class="popper-below" data-toggle="popover" data-placement="above" data-content="Content"></a>
-									<a class="popper-above" data-toggle="popover" data-placement="above" data-content="Content"></a>
-								</form>
-								<button class="btn btn-secondary increment" role="button">+</button>
-							</div>
-						</li>
-
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Warzywa</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Owoce</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Nabiał</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Węglowodany</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Przyprawy</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Alkohole</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Sypkie</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Orzechy</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Napoje</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Sosy</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-				<div class="product-wrapper">
-					<h1>Specjalne</h1>
-					<ul class="product-list list-unstyled col-md-3">
-					</ul><!-- /.col-lg-4 -->
-				</div>
-
-			</div>
-
-
+			}
 		}
 
 
-		</main>
+	</main>
 
-
-	<script src="~/Javascript.js"></script>
+	@*
+		<script src="~/Javascript.js"></script>
+	*@
 
 	<!-- Optional JavaScript; choose one of the two! -->
 	<!-- Option 1: Bootstrap Bundle with Popper -->
@@ -351,8 +964,8 @@
 
 	<!-- Option 2: Separate Popper and Bootstrap JS -->
 	@*
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 	*@
 </body>
 </html>
@@ -360,3 +973,653 @@
 @section Scripts {
 	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+
+<script>
+	var scroll = 0;
+
+	var prevVal = 0;
+
+	var documentHeight = 0;
+
+	var showTooltip = true
+	var hideUnowned = false;
+
+	var larderIdentification = $("#larderIdVar").val();
+
+
+	function searchForRecipe() {
+		var input, filter, ul, li, a, i, txtValue;
+		input = document.getElementById('searchBar');
+		filter = input.value.toUpperCase();
+		ul = document.getElementById("recipes-list");
+		li = ul.getElementsByTagName('li');
+
+		// Loop through all list items, and hide those who don't match the search query
+		for (i = 0; i < li.length; i++) {
+			a = li[i].getElementsByTagName("a")[0];
+			txtValue = a.textContent || a.innerText;
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				li[i].style.display = "";
+			} else {
+				li[i].style.display = "none";
+			}
+		}
+	}
+
+
+
+
+
+	function setCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toGMTString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	function checkCookie() {
+		var showtooltip = getCookie("showtooltip");
+		var hideunowned = getCookie("hideunowned");
+
+		if (showtooltip == "") {
+			setCookie("showtooltip", "True", 30);
+		}
+		if (hideunowned == "") {
+			setCookie("hideunowned", "False", 30);
+		}
+	}
+
+
+	function myRepeatFunction(item) {
+		console.log("XD");
+	}
+
+
+	$(document).ready(function () {
+
+
+
+		$(".circles li").each(function () {
+			var rndDim = Math.floor((Math.random() * 100) + 15);
+			var rndPos = Math.floor((Math.random() * 85) + 5);
+			var rndLeft = Math.floor((Math.random() * 85) + 10);
+			var rndAnimDuration = Math.floor((Math.random() * 45) + 15);
+			var rndAnimDelay = Math.floor((Math.random() * 20) + 0);
+			var randAlpha = Math.random();
+
+
+			$(this).css("width", rndDim + "px");
+			$(this).css("height", rndDim + "px");
+			$(this).css("left", rndPos + "%");
+			$(this).css("animation-duration", rndAnimDuration + "s");
+			$(this).css("animation-delay", rndAnimDelay + "s");
+			$(this).css("background-color", "rgba(126, 217, 87, " + randAlpha + ")");
+
+			this.addEventListener("animationiteration", function () {
+				event.preventDefault();
+				var rndLeft = Math.floor((Math.random() * 85) + 10);
+
+				$(this).css("left", rndLeft + "%");
+			});
+		})
+
+
+
+
+		checkCookie();
+
+		var showtooltipVar = getCookie("showtooltip");
+		var hideunownedVar = getCookie("hideunowned");
+
+		if (showtooltipVar == "True") {
+			showTooltip = true;
+		}
+		else {
+			showTooltip = false;
+		}
+
+		if (hideunownedVar == "True") {
+			hideUnowned = true;
+		}
+		else {
+			hideUnowned = false;
+		}
+
+
+		$('.select2Measurement').select2({
+			minimumResultsForSearch: Infinity,
+			placeholder: "Jednostka miary"
+		});
+
+
+		$('.select2Category').select2({
+			minimumResultsForSearch: Infinity,
+			placeholder: "Kategoria"
+		});
+
+
+
+		documentHeight = $(document).height();
+
+		$("#add-product-gray-screen").css("height", documentHeight);
+
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
+
+
+		if (hideUnowned) {
+			var child = $(".product-list").children().children(".quantity-control").children(".quantity-form").children(".quantity-counter");
+
+			$("#hide-unowned-products").text("Pokaż nieposiadane produkty");
+
+
+
+			$(child).each(function (index) {
+				if ($(this).val() == 0) {
+					$(this).parent().parent().parent().toggle();
+				}
+			});
+		}
+		else {
+			var child = $(".product-list").children().children(".quantity-control").children(".quantity-form").children(".quantity-counter");
+
+			$("#hide-unowned-products").text("Ukryj nieposiadane produkty");
+
+
+		}
+
+
+		$("#hide-unowned-products").click(function () {
+			var child = $(".product-list").children().children(".quantity-control").children(".quantity-form").children(".quantity-counter");
+			if ($(this).text() == "Pokaż nieposiadane produkty") {
+				$(this).text("Ukryj nieposiadane produkty");
+				setCookie("hideunowned", "False", 30);
+			}
+			else {
+				$(this).text("Pokaż nieposiadane produkty");
+				setCookie("hideunowned", "True", 30);
+			}
+
+
+			$(child).each(function (index) {
+				if ($(this).val() == 0) {
+					$(this).parent().parent().parent().toggle();
+				}
+			});
+		});
+
+
+
+
+
+		$("#close-tooltip").click(function () {
+			if ($('.control-checkbox > input').is(':checked')) {
+				setCookie("showtooltip", "False", 30);
+			}
+			$("#tooltip-wrapper").removeClass("slide-right-tooltip");
+			$("#remember-checkbox").removeClass("slide-right-tooltip");
+			setTimeout(function () {
+				$("#tooltip-wrapper").addClass("d-none");
+				$("#remember-checkbox").addClass("d-none");
+			}, 1500);
+		});
+
+		$("#add-product").click(function () {
+			$("#add-product-gray-screen").toggleClass("d-flex");
+			$("#add-product-adding-wrapper").toggleClass("transform-to-origin");
+		});
+
+
+		$(".checkmark").hover(
+			function () {
+				$(".close").css("box-shadow", "inset 0px 0px 0px 30px #5ED957");
+			}, function () {
+				$(".close").css("box-shadow", "inset 0px 0px 0px 30px #7ED957");
+			}
+		);
+
+		$("#close-form-addproduct").click(function () {
+			$("#add-product-gray-screen").toggleClass("d-flex");
+			$("#add-product-adding-wrapper").toggleClass("transform-to-origin");
+		});
+
+		$("#add-product-gray-screen").click(function (e) {
+			if (e.target !== e.currentTarget) return;
+			$("#add-product-adding-wrapper").toggleClass("transform-to-origin");
+			$(this).toggleClass("d-flex");
+		});
+
+
+		$('.popper-below').popover({
+			placement: 'bottom',
+			title: '',
+			content: 'Liczba nie może być ujemna.',
+			sanitize: true
+		});
+
+		$('.popper-above').popover({
+			placement: 'bottom',
+			title: '',
+			content: 'Limit osiągnięty',
+			sanitize: true
+		});
+
+		$(".btn").mouseup(function () {
+			$(this).blur();
+		})
+
+		var counter = 0;
+
+		var timestamp = new Date();
+
+		var disabled = false;
+
+		$(".quantity-control > .btn").click(function () {
+			counter++;
+			if (timestamp - new Date() < -5000) {
+				timestamp = new Date();
+				counter = 0
+			}
+
+
+			if ((timestamp - new Date() < -2500) && (counter >= 5) && (showTooltip)) {
+				$("#tooltip-wrapper").addClass("slide-right-tooltip");
+				$("#remember-checkbox").addClass("slide-right-tooltip");
+				disabled = true;
+			}
+
+
+		});
+
+
+		$("#inputCalories").keypress(function (e) {
+			var keyCode = e.which;
+			if ((keyCode != 8 || keyCode == 32) && (keyCode < 48 || keyCode > 57)) {
+				return false;
+			}
+		});
+
+		$('#inputCalories').on('input', function () {
+
+			var popper = $(this).siblings(".popper-above")
+
+			if (this.value.length > this.maxLength) {
+				this.value = this.value.slice(0, this.maxLength);
+				popper.popover('show');
+				setTimeout(function () {
+					popper.popover('hide');
+				}, 2000);
+			}
+
+			prevVal = this.value;
+		});
+
+		var keyCode;
+
+		$(".quantity-counter").keypress(function (e) {
+			keyCode = e.which;
+			if ((keyCode != 8 || keyCode == 32) && (keyCode < 48 || keyCode > 57)) {
+				return false;
+			}
+		});
+
+		$('.quantity-counter').focus(function () {
+			prevVal = $(this).val();
+
+			if (prevVal == 0) {
+				this.value = "";
+			}
+
+		});
+
+		$('.quantity-counter').on("focusout", function () {
+			if ($(this).val() == "") {
+				if (prevVal == "") {
+					$(this).val(0);
+				}
+				else {
+					$(this).val(prevVal);
+				}
+			}
+			if ($(this).val()[0] == 0) {
+				$(this).val(0);
+			}
+
+		});
+
+
+		$('.quantity-counter').on("focusin", function () {
+			if ($(this).val() == 0) {
+				$(this).val("");
+			}
+
+		});
+
+
+
+		$('.quantity-counter').on('input', function () {
+
+			var key = parseInt(String.fromCharCode(keyCode));
+
+			popper = $(this).siblings(".popper-above");
+
+			if ($(this).val()[0] == 0) {
+				$(this).val(key);
+			}
+
+
+
+
+			if (this.value.length > this.maxLength) {
+				this.value = this.value.slice(0, this.maxLength);
+
+
+				var attr = popper.attr('aria-describedby');
+				if (typeof attr === typeof undefined || attr === false) {
+					popper.popover('show');
+					attr = popper.attr('aria-describedby');
+					setTimeout(function () {
+						$("#" + attr).popover('hide');
+					}, 2000);
+				}
+
+
+
+
+			}
+
+
+			prevVal = this.value;
+		});
+
+		for (var i = 1; i <= 10; i++) {
+			randomVal = Math.floor((Math.random() * 75) + 10);
+			$(".circles").children("li").eq(i).css("left", randomVal + "%");
+		}
+
+		var timeoutDecrement;
+
+		var decrementElement;
+
+		var popper;
+
+		$(".quantity-control > .decrement").mousedown(function () {
+			timeoutDecrement = $(this);
+
+			decrementElement = $(this);
+
+			prevVal = $(this).parent().children(".quantity-form").children(".quantity-counter").val();
+
+			popper = $(this).parent().children(".quantity-form").children(".popper-below");
+
+			timeoutDecrement = setInterval(function () {
+				--prevVal;
+				if (prevVal < 0) prevVal = 0;
+
+				decrementElement.parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+
+
+
+				if (decrementElement.parent().children(".quantity-form").children(".quantity-counter").val() < 0) {
+					decrementElement.parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+				}
+				else {
+					$(this).parent().children(".quantity-form").children(".quantity-counter").val(--prevVal);
+				}
+
+			}, 135);
+			if (prevVal < 0) prevVal = 0;
+			decrementElement.parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+
+			$.ajax({
+				async: true,
+				url: "/Home/LarderSave",
+				data: { newAmount: $(this).parent().children(".quantity-form").children(".quantity-counter").val(), larderId: larderIdentification - 1, product: $(this).parent().parent().children(".product-name").html() },
+				cache: false,
+				dataType: "json",
+				success: function (data) { receiveResponse(data); }
+			});
+
+
+			return false;
+		});
+
+
+
+		$(document).mouseup(function () {
+			clearInterval(timeoutDecrement);
+			if (prevVal < 0) prevVal = 0;
+
+
+
+
+
+
+			if ($(decrementElement).parent().children(".quantity-form").children(".quantity-counter").val() == 0) {
+				$(decrementElement).parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+			}
+
+
+
+
+
+			return false;
+		});
+
+
+		$(decrementElement).mouseup(function () {
+			if (prevVal < 0) prevVal = 0;
+
+
+
+			if ($(this).parent().children(".quantity-form").children(".quantity-counter").val() == 0) {
+				$(this).parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+			}
+
+			return false;
+		});
+
+
+
+
+
+
+		$(".quantity-control > .decrement").click(function () {
+
+
+
+			popper = $(this).parent().children(".quantity-form").children(".popper-below");
+
+			prevVal = $(this).parent().children(".quantity-form").children(".quantity-counter").val();
+
+
+
+
+			if ($(this).parent().children(".quantity-form").children(".quantity-counter").val() == 0) {
+				$(this).parent().children(".quantity-form").children(".quantity-counter").val(0);
+
+				var attr = popper.attr('aria-describedby');
+				if (typeof attr === typeof undefined || attr === false) {
+					popper.popover('show');
+					attr = popper.attr('aria-describedby');
+					setTimeout(function () {
+						$("#" + attr).popover('hide');
+					}, 2000);
+				}
+			}
+			else {
+				$(this).parent().children(".quantity-form").children(".quantity-counter").val(--prevVal);
+			}
+
+			$.ajax({
+				async: true,
+				url: "/Home/LarderSave",
+				data: { newAmount: $(this).parent().children(".quantity-form").children(".quantity-counter").val(), larderId: larderIdentification - 1, product: $(this).parent().parent().children(".product-name").html() },
+				cache: false,
+				dataType: "json",
+				success: function (data) { receiveResponse(data); }
+			});
+
+		})
+
+
+
+
+
+
+
+
+
+
+
+		var timeoutIncrement;
+
+		var incrementElement;
+
+
+		$(".quantity-control > .increment").mousedown(function () {
+			timeoutIncrement = $(this);
+
+			incrementElement = $(this);
+
+			popper = $(this).parent().children(".quantity-form").children(".popper-above");
+
+			prevVal = $(this).parent().children(".quantity-form").children(".quantity-counter").val();
+
+			timeoutIncrement = setInterval(function () {
+				++prevVal;
+				incrementElement.parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+
+				if (incrementElement.parent().children(".quantity-form").children(".quantity-counter").val() >= 999) {
+					incrementElement.parent().children(".quantity-form").children(".quantity-counter").val(999);
+				}
+				else {
+					$(this).parent().children(".quantity-form").children(".quantity-counter").val(++prevVal);
+				}
+
+			}, 135);
+
+			incrementElement.parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+
+
+
+			return false;
+		});
+
+		$(document).mouseup(function () {
+			clearInterval(timeoutIncrement);
+
+			if (prevVal > 999) prevVal = 999;
+
+			if ($(incrementElement).parent().children(".quantity-form").children(".quantity-counter").val() == 999) {
+				$(incrementElement).parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+			}
+
+
+			return false;
+		});
+
+		$(incrementElement).mouseup(function () {
+
+			if (prevVal > 999) prevVal = 999;
+
+
+			if ($(this).parent().children(".quantity-form").children(".quantity-counter").val() == 999) {
+				$(this).parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
+			}
+
+
+
+
+			return false;
+		});
+
+
+
+
+		$(".quantity-control > .increment").click(function () {
+
+
+
+			var popper = $(this).parent().children(".quantity-form").children(".popper-above");
+
+
+
+			prevVal = $(this).parent().children(".quantity-form").children(".quantity-counter").val();
+
+
+
+			if ($(this).parent().children(".quantity-form").children(".quantity-counter").val() == 999) {
+				$(this).parent().children(".quantity-form").children(".quantity-counter").val(999);
+
+				var attr = popper.attr('aria-describedby');
+				if (typeof attr === typeof undefined || attr === false) {
+					popper.popover('show');
+					attr = popper.attr('aria-describedby');
+					setTimeout(function () {
+						$("#" + attr).popover('hide');
+					}, 2000);
+				}
+
+			}
+			else {
+				$(this).parent().children(".quantity-form").children(".quantity-counter").val(++prevVal);
+			}
+
+			$.ajax({
+				async: true,
+				url: "/Home/LarderSave",
+				data: { newAmount: $(this).parent().children(".quantity-form").children(".quantity-counter").val(), larderId: larderIdentification - 1, product: $(this).parent().parent().children(".product-name").html() },
+				cache: false,
+				dataType: "json",
+				success: function (data) { receiveResponse(data); }
+			});
+		})
+
+
+		$("#button-feedback").click(function () {
+			$("#message-wrapper").toggleClass("d-none");
+		});
+
+		$("#message-wrapper").click(function (e) {
+			if (e.target !== e.currentTarget) return;
+			$(this).toggleClass("d-none");
+		});
+
+
+
+
+
+	});
+
+</script>
+
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+﻿SELECT * FROM dbo.Larder INNER JOIN dbo.ProductsForLarder ON dbo.ProductsForLarder.IdUser = dbo.Larder.UserId WHERE UserId = 1;
