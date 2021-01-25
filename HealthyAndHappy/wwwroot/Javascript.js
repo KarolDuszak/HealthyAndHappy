@@ -10,7 +10,6 @@ var hideUnowned = false;
 
 
 
-
 function searchForRecipe(){
 	var input, filter, ul, li, a, i, txtValue;
 	input = document.getElementById('searchBar');
@@ -531,25 +530,35 @@ $(document).mouseup(function(){
     clearInterval(timeoutIncrement);
 	
 	if(prevVal > 999) prevVal = 999;
-	
+
+
+
 	if($(incrementElement).parent().children(".quantity-form").children(".quantity-counter").val() == 999){
 		$(incrementElement).parent().children(".quantity-form").children(".quantity-counter").val(prevVal);	
 	}
-	
+
+
     return false;
 });
 
+
+
+
+
 $(incrementElement).mouseup(function(){
-	
+
 	if(prevVal > 999) prevVal = 999;
 
 	
 	if($(this).parent().children(".quantity-form").children(".quantity-counter").val() == 999){
 		$(this).parent().children(".quantity-form").children(".quantity-counter").val(prevVal);
 	}
+
+
+
+
     return false;
 });
-
 
 
 		

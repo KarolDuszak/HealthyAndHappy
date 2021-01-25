@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Web;
 using System.Text.Json;
 
+
 namespace HealthyAndHappy.Controllers
 {
 
@@ -97,6 +98,9 @@ namespace HealthyAndHappy.Controllers
                     }
 
                     if(HttpContext.Session.IsAvailable) {
+                        TempData["SessionMail"] = email;
+                        TempData["SessionPassword"] = pass;
+
                         return RedirectToAction("Larder", "Home");
                     }
                     else {
@@ -168,20 +172,66 @@ namespace HealthyAndHappy.Controllers
         }
 
 
-        public IActionResult LarderSave() {
+        public void LarderSave(int newAmount, int larderId, string product) {
 
             string mail = HttpContext.Session.GetString(SessionKeyMail);
             string pass = HttpContext.Session.GetString(SessionKeyPassword);
 
-            if((string.IsNullOrEmpty(mail)) || (string.IsNullOrEmpty(pass))) {
-                TempData["Message"] = "Błąd sesji.";
-                return RedirectToAction("SignIn", "Home");
-            }
 
+            using(SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=test;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")) {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand($"UPDATE dbo.ProductsForLarder SET Amount = '{newAmount}' WHERE LarderId = '{larderId}' AND Name = '{product}'", connection);
+
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+        [HttpPost]
+        public IActionResult Larder(AddLarderModel prod) {
+
+
+            int userId = prod.userId;
+            int larderId = prod.larderId;
+            string name = prod.Name;
+            int chain = prod.num;
+            int amount = prod.Amount;
+            int cals = prod.Calories;
+            int carbs = prod.Carbs;
+            int fats = prod.Fats;
+            int proteins = prod.Proteins;
+            int category = prod.Category;
+
+            using(SqlConnection connection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=test;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")) {
+                connection.Open();
+
+                SqlCommand getLastIndex = new SqlCommand($"SELECT TOP 1 Id FROM dbo.ProductsForLarder ORDER BY Id+0 DESC", connection);
+
+                int index = (int) Convert.ToInt32(getLastIndex.ExecuteScalar()) + 1;
+
+                SqlCommand command = new SqlCommand($"INSERT INTO dbo.ProductsForLarder (Id, LarderId, Amount, Kcal, Portion, Chain, isAccepted, PortionSize, idUser, Name, Fat, Carbohydrates, Proteins, Category) VALUES (@index, @larderId, @amount, @calories, 0, @chain, 0, 0, @idUser, @name, @fats, @carbs, @proteins, @category)", connection);
+
+                command.Parameters.Add(new SqlParameter("@index", index));
+                command.Parameters.Add(new SqlParameter("@larderId", larderId));
+                command.Parameters.Add(new SqlParameter("@calories", cals));
+                command.Parameters.Add(new SqlParameter("@chain", chain));
+                command.Parameters.Add(new SqlParameter("@idUser", userId));
+                command.Parameters.Add(new SqlParameter("@name", name));
+                command.Parameters.Add(new SqlParameter("@fats", fats));
+                command.Parameters.Add(new SqlParameter("@carbs", carbs));
+                command.Parameters.Add(new SqlParameter("@proteins", proteins));
+                command.Parameters.Add(new SqlParameter("@category", category));
+                command.Parameters.Add(new SqlParameter("@amount", amount));
+
+
+                command.ExecuteNonQuery();
+                
+            }
 
             return View("Views/Home/Larder.cshtml");
         }
-
 
 
         public IActionResult Logout() {
